@@ -5,8 +5,6 @@
   
 </p>
 
-<h6 align="center">Demonstration of this system can be found <a href="https://statelessauthjava.herokuapp.com/">here</a></h6>
-
 ## Usage
 This application is a template for a secure authentication system that relies on Json Web Token (JWT) based authorization. 
 This can be implemented in a small application as a simple, but secure authentication system.
