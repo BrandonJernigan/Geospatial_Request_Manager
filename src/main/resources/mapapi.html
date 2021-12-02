@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Location</title>
+
+  <!--Leaflet Stylesheet-->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+
+  <!--Leaflet Source-->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+          integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+          crossorigin=""></script>
+
+</head>
+<body>
+
+<!--Place and style map-->
+<div id="mapid"></div>
+<style> #mapid {height: 940px; width: 620px; vertical-align: middle;} </style>
+
+<!--Variable for location-->
+<var id="location" latlng=""/>
+
+<!--Variable for location radius-->
+<var id="radius" size=""/>
+
+<!--Load map display and functionality-->
+<script type="text/javascript">
+
+  var marker;
+  var circle;
+  var circleSize;
+  const map = L.map('mapid').setView([39, -105], 8);
+
+  // Tile map layers
+  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+          {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 18,
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1
+          }
+  ).addTo(map);
+
+  // Add marker to map when clicked
+  // Set location variable information
+  function onMapClick(event){
+
+    if(marker != undefined){ map.removeLayer(marker) }
+
+    marker = L.marker(event.latlng).addTo(map);
+    marker.latlng = event.latlng;
+
+    document.getElementById("location").setAttribute("latlng", marker.latlng);
+
+    setRadiusCircle();
+  }
+  map.on('click', onMapClick);
+
+  // Create a circle around marker
+  function setRadiusCircle(){
+
+    circleSize = document.getElementById("radius").getAttribute("size").toString();
+
+    if(circle != undefined){ map.removeLayer(circle) }
+
+    circle = L.circle(marker.latlng, {
+      color: 'rgba(51, 161, 201, 0.8)',
+      fillColor: 'skyblue',
+      fillOpacity: 0.25,
+      radius: parseInt(circleSize) * 1000
+    }).addTo(map);
+  }
+
+  // Remove the marker and circle on the map
+  function clearMarkerAndRadius(){
+
+    if(marker != undefined){ map.removeLayer(marker); }
+    if(circle != undefined) { map.removeLayer(circle); }
+  }
+
+</script>
+
+</body>
+</html>
