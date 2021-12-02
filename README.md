@@ -2,8 +2,9 @@
 <h6 align="center">Written in Java using JavaFX</h6>
 
 <p align="center">
-  
+  <img width="300" alt="Untitled" src="https://user-images.githubusercontent.com/81219815/144441056-e424e8f9-7808-42b6-b2d0-1faba7d2788b.png">
 </p>
+
 
 ## Usage
 This application is a template for a secure authentication system that relies on Json Web Token (JWT) based authorization. 
