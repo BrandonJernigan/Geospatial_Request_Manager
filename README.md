@@ -7,8 +7,7 @@
 
 
 ## Usage
-This application is a template for a secure authentication system that relies on Json Web Token (JWT) based authorization. 
-This can be implemented in a small application as a simple, but secure authentication system.
+This application is a template for a simple and efficient request manager for geospatial products. It is a client side application that uses a simple authentication portal to separate an admin from a client. The client can submit a request and monitor the status, through the product lifecycle. The admin(s) can adjust the status of the request and view the details of the request provided by the client.
 
 #### Application Specifications
 - Java version 17
